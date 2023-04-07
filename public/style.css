@@ -159,3 +159,15 @@ body {
 	margin: 0.5rem 0;
 	font-size: 1rem;
 }
+
+.eye-icon {
+	position: absolute;
+	right: 35px;
+	font-size: 1.2em;
+	color: #fff;
+	line-height: 57px;
+}
+
+.eye-icon i {
+	cursor: pointer;
+}

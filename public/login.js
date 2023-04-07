@@ -5,6 +5,7 @@ const registerForm = document.querySelector(".register form");
 const loginForm = document.querySelector(".login form");
 const registerError = document.querySelector(".register .error-message");
 const loginError = document.querySelector(".login .error-message");
+const eyeIcons = document.querySelectorAll(".eye-icon");
 
 registerLink.addEventListener("click", () => {
 	wrapper.classList.add("active");
@@ -92,3 +93,29 @@ function validateForm(form) {
 
 	return valid;
 }
+
+eyeIcons.forEach((eyeIcon) => {
+	eyeIcon.addEventListener("click", () => {
+		const passwordContainer = eyeIcon.parentElement;
+		if (!passwordContainer) return;
+
+		const passwordInput = passwordContainer.querySelector(
+			'input[type="password"], input[type="text"]'
+		);
+		if (!passwordInput) return;
+
+		const inputType = passwordInput.getAttribute("type");
+		const eyeOffIcon = passwordContainer.querySelector(".ri-eye-off-line");
+		const eyeOnIcon = passwordContainer.querySelector(".ri-eye-line");
+
+		if (inputType === "password") {
+			passwordInput.setAttribute("type", "text");
+			eyeOffIcon.style.display = "none";
+			eyeOnIcon.style.display = "inline-block";
+		} else {
+			passwordInput.setAttribute("type", "password");
+			eyeOffIcon.style.display = "inline-block";
+			eyeOnIcon.style.display = "none";
+		}
+	});
+});
