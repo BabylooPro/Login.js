@@ -21,9 +21,9 @@ app.post("/register", async (req, res) => {
 	const result = await registerUser(username, email, password);
 
 	if (result.success) {
-		res.status(200).send(result.message);
+		res.status(200).json(result);
 	} else {
-		res.status(400).send(result.message);
+		res.status(400).json(result);
 	}
 });
 
@@ -32,9 +32,9 @@ app.post("/login", async (req, res) => {
 	const result = await loginUser(email, password);
 
 	if (result.success) {
-		res.status(200).send(result.message);
+		res.status(200).json(result);
 	} else {
-		res.status(400).send(result.message);
+		res.status(400).json(result);
 	}
 });
 

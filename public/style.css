@@ -15,9 +15,9 @@ body {
 	background-color: #181818;
 }
 
-/**********
-   LOGIN
-**********/
+/**************************
+   LOGIN & REGISTER FORM
+**************************/
 
 .wrapper {
 	position: relative;
@@ -150,4 +150,12 @@ body {
 }
 .login-register p a:hover {
 	text-decoration: underline;
+}
+
+.error-message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.5rem 0;
+	font-size: 1rem;
 }

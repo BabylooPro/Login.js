@@ -14,23 +14,64 @@ loginLink.addEventListener("click", () => {
 	wrapper.classList.remove("active");
 });
 
-registerForm.addEventListener("submit", (e) => {
+registerForm.addEventListener("submit", async (e) => {
 	e.preventDefault();
 
 	if (validateForm(registerForm)) {
 		registerError.textContent = "";
-		registerForm.submit();
+
+		const response = await fetch("/register", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				username: registerForm.username.value,
+				email: registerForm.email.value,
+				password: registerForm.password.value,
+			}),
+		});
+
+		const result = await response.json();
+
+		if (response.ok) {
+			registerError.style.color = "green";
+		} else {
+			registerError.style.color = "red";
+		}
+
+		registerError.textContent = result.message;
 	} else {
 		registerError.textContent = "PLEASE COMPLETE ALL FIELDS";
 	}
 });
 
-loginForm.addEventListener("submit", (e) => {
+loginForm.addEventListener("submit", async (e) => {
 	e.preventDefault();
 
 	if (validateForm(loginForm)) {
 		loginError.textContent = "";
-		loginForm.submit();
+
+		const response = await fetch("/login", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: loginForm.email.value,
+				password: loginForm.password.value,
+			}),
+		});
+
+		const result = await response.json();
+
+		if (response.ok) {
+			loginError.style.color = "green";
+		} else {
+			loginError.style.color = "red";
+		}
+
+		loginError.textContent = result.message;
 	} else {
 		loginError.textContent = "PLEASE COMPLETE ALL FIELDS";
 	}
