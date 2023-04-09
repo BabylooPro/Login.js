@@ -7,6 +7,10 @@ require("dotenv").config();
 const { client: dbClient, connect } = require("./db/db");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const helmet = require("helmet");
+const crypto = require("crypto");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
 // MIDDLEWARE
 app.use(logger);
@@ -14,6 +18,15 @@ app.use(errorHandler);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(
+	helmet.contentSecurityPolicy({
+		directives: {
+			defaultSrc: ["'none'"],
+			fontSrc: ["'self'", "http:", "https:"],
+			imgSrc: ["'self'", "data:"],
+		},
+	})
+);
 
 // ROUTES
 app.post("/register", async (req, res) => {
@@ -75,8 +88,12 @@ async function loginUser(email, password) {
 }
 
 (async () => {
-	await connect();
-	app.listen(port, () => {
-		console.log(`SERVER LISTEN ON PORT ${port}`);
-	});
+	try {
+		await connect();
+		app.listen(port, () => {
+			console.log(`SERVER LISTEN ON PORT ${port}`);
+		});
+	} catch (error) {
+		console.error("ERROR CONNECTING TO DATABASE : ", error);
+	}
 })();

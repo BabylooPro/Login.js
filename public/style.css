@@ -53,9 +53,82 @@ body {
 	transition: none;
 	transform: translateX(400px);
 }
-.wrapper.active .form-box.register {
+.wrapper.active:not(.forgot-password) .form-box.register {
 	transition: transform 0.18s ease;
 	transform: translateX(0);
+}
+.wrapper .form-box.forgot-password {
+	position: absolute;
+	transition: none;
+	transform: translateY(500px); /*TODO: back to 400px if modified form*/
+}
+.wrapper.forgot-password .form-box.forgot-password {
+	transition: transform 0.18s ease;
+	transform: translateX(0);
+}
+.wrapper.forgot-password .form-box.register {
+	display: none;
+}
+.wrapper .form-box.forgot-password .request-reset-password {
+	width: 100%;
+	padding: 40px;
+}
+.wrapper .form-box.forgot-password .request-reset-password h2 {
+	font-size: 1.75em;
+	color: #fff;
+	text-align: center;
+	/*space*/
+	margin-bottom: 50px;
+}
+.wrapper .form-box.forgot-password .request-reset-password form label {
+	font-size: 1em;
+	color: #999999;
+	margin-bottom: 5px;
+	display: block;
+}
+.wrapper
+	.form-box.forgot-password
+	.request-reset-password
+	form
+	input[type="email"] {
+	width: 100%;
+	height: 40px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 1em;
+	font-weight: 600;
+	padding: 0 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}
+.wrapper .form-box.forgot-password .request-reset-password form button {
+	width: 100%;
+	height: 45px;
+	background: #303030;
+	border: none;
+	outline: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: 500;
+	color: #fff;
+}
+.wrapper .form-box.forgot-password .login-register {
+	font-size: 0.9em;
+	color: #fff;
+	text-align: center;
+	font-weight: 500;
+	margin: 25px 0 10px;
+}
+.wrapper .form-box.forgot-password .login-register p a {
+	color: #999999;
+	text-decoration: none;
+	font-weight: 600;
+}
+.wrapper .form-box.forgot-password .login-register p a:hover {
+	text-decoration: underline;
 }
 .form-box h2 {
 	font-size: 2em;

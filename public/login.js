@@ -2,17 +2,36 @@ const wrapper = document.querySelector(".wrapper");
 const loginLink = document.querySelector(".login-link");
 const registerLink = document.querySelector(".register-link");
 const registerForm = document.querySelector(".register form");
+const forgotPassword = document.querySelector(".forgot-password form");
+const forgotPasswordLink = document.querySelector(".forgotPassword-link");
 const loginForm = document.querySelector(".login form");
+const backToLoginLink = document.querySelector(".back-to-login");
 const registerError = document.querySelector(".register .error-message");
 const loginError = document.querySelector(".login .error-message");
 const eyeIcons = document.querySelectorAll(".eye-icon");
+const forgotPasswordError = document.querySelector(
+	".forgotPassword .error-message"
+);
 
 registerLink.addEventListener("click", () => {
+	wrapper.classList.remove("forgot-password");
 	wrapper.classList.add("active");
 });
 
 loginLink.addEventListener("click", () => {
 	wrapper.classList.remove("active");
+	wrapper.classList.remove("forgot-password");
+});
+
+forgotPasswordLink.addEventListener("click", () => {
+	wrapper.classList.add("active");
+	wrapper.classList.add("forgot-password");
+});
+
+backToLoginLink.addEventListener("click", (e) => {
+	e.preventDefault();
+	wrapper.classList.remove("active");
+	wrapper.classList.remove("forgot-password");
 });
 
 registerForm.addEventListener("submit", async (e) => {
@@ -71,8 +90,14 @@ loginForm.addEventListener("submit", async (e) => {
 		} else {
 			loginError.style.color = "red";
 		}
+		if (loginError) {
+			loginError.textContent = result.message;
+		}
+		if (forgotPasswordError) {
+			forgotPasswordError.textContent = result.message;
+		}
 
-		loginError.textContent = result.message;
+		forgotPasswordError.textContent = result.message;
 	} else {
 		loginError.textContent = "PLEASE COMPLETE ALL FIELDS";
 	}

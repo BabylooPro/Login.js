@@ -38,7 +38,9 @@
 					</div>
 					<div class="remember-forgot">
 						<label> <input type="checkbox" /> Remember me </label>
-						<a href="#">Forgot Password ?</a>
+						<a href="#" class="forgotPassword-link"
+							>Forgot Password ?</a
+						>
 					</div>
 					<button type="submit" class="btn">Login</button>
 					<div class="error-message"></div>
@@ -94,6 +96,25 @@
 						</p>
 					</div>
 				</form>
+			</div>
+			<!-- RESET PASSWORD -->
+			<div class="form-box forgot-password">
+				<div class="request-reset-password">
+					<h2>PASSWORD RESET</h2>
+					<form action="/request-reset-password" method="POST">
+						<div class="input-box">
+							<input type="email" name="email" required />
+							<label for="email">Email</label>
+						</div>
+						<button type="submit">Send</button>
+					</form>
+				</div>
+				<div class="error-message"></div>
+				<div class="login-register">
+					<p>
+						<a href="#" class="back-to-login">Back to login</a>
+					</p>
+				</div>
 			</div>
 		</div>
 		<script src="scrollreveal.js"></script>
